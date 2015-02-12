@@ -5,7 +5,7 @@
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 
 Drive::Drive() :
-		Subsystem("Drive"), left(new Talon(TALON_LEFT)), right(new Talon(TALON_RIGHT)),
+		Subsystem("Drive"), left(new Talon(DRIVE_LEFT)), right(new Talon(DRIVE_RIGHT)),
 		eLeft(new Encoder(ENCODER_LEFT_1, ENCODER_LEFT_2)),
 		eRight(new Encoder(ENCODER_RIGHT_1, ENCODER_RIGHT_2))
 {
@@ -49,7 +49,6 @@ void Drive::arcadeDrive(float moveValue, float rotateValue){
 			mult = 1;
 		else
 			mult = abs(eLeft->GetRate())/abs(eRight->GetRate());
-
 		float limitedL = Limit(leftMotorOutput);
 		float limitedR = Limit(((float) mult)*rightMotorOutput);
 		printf("%f, %f\n", eLeft->GetRate(), eRight->GetRate());
