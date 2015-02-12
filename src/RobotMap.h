@@ -21,12 +21,24 @@
 //const int RANGE_FINDER_PORT = 1;
 //const int RANGE_FINDER_MODULE = 1;
 
-const int TALON_LEFT = 0;
-const int TALON_RIGHT = 1;
+//DRIVE
+const int DRIVE_LEFT = 0;
 const int ENCODER_LEFT_1 = 0;
 const int ENCODER_LEFT_2 = 1;
+const int DRIVE_RIGHT = 1;
 const int ENCODER_RIGHT_1 = 2;
 const int ENCODER_RIGHT_2 = 3;
+
+//ELEVATOR
+const int SCREW_1 = 2;
+const int SCREW_1_ENCODER_1 = 4;
+const int SCREW_1_ENCODER_2 = 5;
+const int SCREW_2 = 3;
+const int SCREW_2_ENCODER_1 = 6;
+const int SCREW_2_ENCODER_2 = 7;
+
+
+//JOYSTICKS
 const int DRIVESTICK = 0;
 const int OPERATORSTICK = 1;
 
