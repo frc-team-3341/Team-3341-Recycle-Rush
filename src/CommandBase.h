@@ -21,7 +21,5 @@ public:
 	// Create a single static instance of all of your subsystems
 	static Drive* drive;
 	static OI *oi;
-
 };
-
 #endif
