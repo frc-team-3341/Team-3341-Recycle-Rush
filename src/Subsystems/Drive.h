@@ -17,6 +17,7 @@ private:
 public:
 	Drive();
 	void arcadeDrive(float move, float rotate);
+	double GetDistance();
 	void InitDefaultCommand();
 };
 

@@ -69,6 +69,11 @@ float Drive::Limit(float num)
 	return num;
 }
 
+double Drive::GetDistance()
+{
+	return (eLeft->GetDistance() + eRight->GetDistance()) / 2.0;
+}
+
 void Drive::InitDefaultCommand()
 {
 	SetDefaultCommand(new ArcadeDrive());
