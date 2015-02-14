@@ -1,8 +1,8 @@
 #ifndef CVALIGNTOTE_H
 #define CVALIGNTOTE_H
 
+#include <NewPIDController.h>
 #include "../CommandBase.h"
-#include "../PIDController.h"
 #include "WPILib.h"
 
 class CVAlignTote : public CommandBase
@@ -15,8 +15,8 @@ public:
 	void End();
 	void Interrupted();
 private:
-	PIDController* distance_ctl;
-	PIDController* azimuth_ctl;
+	NewPIDController* distance_ctl;
+	NewPIDController* azimuth_ctl;
 };
 
 #endif

@@ -1,16 +1,16 @@
 #ifndef PIDCONTROLLER_H
 #define PIDCONTROLLER_H
 
-class PIDController {
+class NewPIDController {
 public:
-    PIDController(double Kp, double Ki, double Kd, double setPoint);
+    NewPIDController(double Kp, double Ki, double Kd, double setPoint);
     double Tick(double measuredValue);
     void SetSetPoint(double setPoint);
     double GetSetPoint();
     void SetKp(double Kp);
     double GetKp();
     void SetKi(double Ki);
-    double SetKi();
+    double GetKi();
     void SetKd(double Kd);
     double GetKd();
 private:

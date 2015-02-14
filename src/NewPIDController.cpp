@@ -1,6 +1,6 @@
-#include "PIDController.h"
+#include <NewPIDController.h>
 
-PIDController::PIDController(double Kp, double Ki, double Kd, double setPoint)
+NewPIDController::NewPIDController(double Kp, double Ki, double Kd, double setPoint)
 {
 	this->Kp = Kp;
 	this->Ki = Ki;
@@ -11,7 +11,7 @@ PIDController::PIDController(double Kp, double Ki, double Kd, double setPoint)
 	integral = 0.0;
 }
 
-double PIDController::Tick(double measuredValue)
+double NewPIDController::Tick(double measuredValue)
 {
 	double error = setPoint - measuredValue;
 	integral += error;
@@ -21,42 +21,43 @@ double PIDController::Tick(double measuredValue)
 	return Kp * error + Ki * integral + Kd * derivative;
 }
 
-void PIDController::SetSetPoint(double setPoint)
+void NewPIDController::SetSetPoint(double setPoint)
 {
 	this->setPoint = setPoint;
 }
 
-void double PIDController::GetSetPoint()
+double NewPIDController::GetSetPoint()
 {
 	return setPoint;
 }
 
-void PIDController::SetKp(double Kp)
+void NewPIDController::SetKp(double Kp)
 {
 	this->Kp = Kp;
 }
 
-double PIDController::GetKp()
+double NewPIDController::GetKp()
 {
 	return Kp;
 }
 
-void PIDController::SetKi(double Ki)
+void NewPIDController::SetKi(double Ki)
 {
 	this->Ki = Ki;
 }
 
-double PIDController::GetKi()
+
+double NewPIDController::GetKi()
 {
 	return Ki;
 }
 
-void PIDController::SetKd(double Kd)
+void NewPIDController::SetKd(double Kd)
 {
 	this->Kd = Kd;
 }
 
-double PIDController::GetKd()
+double NewPIDController::GetKd()
 {
 	return Kd;
 }

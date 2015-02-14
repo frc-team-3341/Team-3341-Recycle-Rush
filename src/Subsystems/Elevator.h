@@ -9,6 +9,8 @@ class Elevator: public Subsystem
 private:
 	Jaguar* s1Screw;
 	Jaguar* s2Screw;
+	double s1Distance;
+	double s2Distance;
 	Encoder* s1Encoder;
 	Encoder* s2Encoder;
 	bool clawControl;

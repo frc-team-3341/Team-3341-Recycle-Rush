@@ -1,5 +1,5 @@
+#include <NewPIDController.h>
 #include "../NetworkTablesInterface.h"
-#include "../PIDController.h"
 #include "CVAlignTote.h"
 
 CVAlignTote::CVAlignTote()
@@ -13,8 +13,8 @@ CVAlignTote::CVAlignTote()
 void CVAlignTote::Initialize()
 {
 	// Goal is to get to 2 feet away and pointed directly at the tote
-	distance_ctl = new PIDController(1e-1, 0, 0, 0.6096 /* 2 feet in meters */);
-	azimuth_ctl = new PIDController(1e-1, 0, 0, 0);
+	distance_ctl = new NewPIDController(1e-1, 0, 0, 0.6096 /* 2 feet in meters */);
+	azimuth_ctl = new NewPIDController(1e-1, 0, 0, 0);
 	
 }
 
