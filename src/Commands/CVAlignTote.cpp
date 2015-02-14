@@ -21,10 +21,10 @@ void CVAlignTote::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void CVAlignTote::Execute()
 {
-	if (NetworkTablesInterface()->GetInstance()->ToteFound())
+	if (NetworkTablesInterface::GetInstance()->ToteFound())
 	{
-		drive->arcadeDrive(distance_ctl->Tick(NetworkTablesInterface()->GetInstance()->GetDistance()),
-				   azimuth_ctl->Tick(NetworkTablesInterface()->GetInstance()->GetAzimuth()));
+		drive->arcadeDrive(distance_ctl->Tick(NetworkTablesInterface::GetInstance()->GetDistance()),
+				   azimuth_ctl->Tick(NetworkTablesInterface::GetInstance()->GetAzimuth()));
 	}
 	else
 	{
@@ -35,7 +35,7 @@ void CVAlignTote::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool CVAlignTote::IsFinished()
 {
-	return !NetworkTablesInterface()->GetInstance()->ToteFound();
+	return !NetworkTablesInterface::GetInstance()->ToteFound();
 }
 
 // Called once after isFinished returns true

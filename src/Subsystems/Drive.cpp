@@ -45,10 +45,10 @@ void Drive::arcadeDrive(float moveValue, float rotateValue){
 			}
 		}
 		double mult;
-		if((moveValue >= 0.01 && rotateValue >= 0.01) || eRight->GetRate() == 0)
+		//if((moveValue >= 0.01 && rotateValue >= 0.01) || eRight->GetRate() == 0)
 			mult = 1;
-		else
-			mult = abs(eLeft->GetRate())/abs(eRight->GetRate());
+		//else
+		//	mult = abs(eLeft->GetRate())/abs(eRight->GetRate());
 		float limitedL = Limit(leftMotorOutput);
 		float limitedR = Limit(((float) mult)*rightMotorOutput);
 		printf("%f, %f\n", eLeft->GetRate(), eRight->GetRate());
