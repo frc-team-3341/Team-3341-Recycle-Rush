@@ -11,6 +11,7 @@ private:
 
 	void RobotInit()
 	{
+		NetworkTablesInterface::GetInstance()->Update();
 		CommandBase::init();
 		lw = LiveWindow::GetInstance();
 	}
