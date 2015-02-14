@@ -1,4 +1,5 @@
 #include "WPILib.h"
+#include "NetworkTablesInterface.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
 
@@ -27,6 +28,7 @@ private:
 
 	void AutonomousPeriodic()
 	{
+		NetworkTablesInterface::GetInstance()->Update();
 		Scheduler::GetInstance()->Run();
 	}
 
@@ -42,6 +44,7 @@ private:
 
 	void TeleopPeriodic()
 	{
+		NetworkTablesInterface::GetInstance()->Update();
 		Scheduler::GetInstance()->Run();
 	}
 
