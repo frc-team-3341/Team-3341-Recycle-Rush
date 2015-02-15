@@ -16,7 +16,7 @@ void ArcadeDrive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ArcadeDrive::Execute()
 {
-	drive->arcadeDrive(oi->getDriveStick()->GetY(), oi->getDriveStick()->GetZ());
+	drive->arcadeDrive(-oi->getDriveStick()->GetY(), -oi->getDriveStick()->GetZ());
 }
 
 // Make this return true when this Command no longer needs to run execute()
