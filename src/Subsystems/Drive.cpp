@@ -50,8 +50,8 @@ void Drive::arcadeDrive(float moveValue, float rotateValue){
 		//else
 		//	mult = abs(eLeft->GetRate())/abs(eRight->GetRate());
 		float limitedL = Limit(leftMotorOutput);
-		float limitedR = Limit(((float) mult)*rightMotorOutput);
-		printf("%f, %f\n", eLeft->GetRate(), eRight->GetRate());
+		float limitedR = -Limit(rightMotorOutput);
+		//printf("%f, %f\n", eLeft->GetRate(), eRight->GetRate());
 		left->Set(limitedL);
 		right->Set(limitedR);
 }

@@ -14,11 +14,14 @@ private:
 	Encoder* s1Encoder;
 	Encoder* s2Encoder;
 	bool clawControl;
+	bool both;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
 	Elevator();
 	void InitDefaultCommand();
+	void bothOn();
+	void bothOff();
 	void clawOn();
 	void clawOff();
 	void moveElevator(float speed);

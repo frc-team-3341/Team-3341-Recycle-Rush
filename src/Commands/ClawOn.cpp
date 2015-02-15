@@ -10,6 +10,7 @@ ClawOn::ClawOn()
 // Called just before this Command runs the first time
 void ClawOn::Initialize()
 {
+	elevator->moveElevator(0);
 	elevator->clawOn();
 }
 

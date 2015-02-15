@@ -4,6 +4,7 @@ NetworkTablesInterface::NetworkTablesInterface() :
 	toteFound_bool(false), distance_m(-1),
 	table(NetworkTable::GetTable("cv")), azimuth_deg(-1)
 {
+
 }
 
 NetworkTablesInterface* NetworkTablesInterface::nti = NULL;
