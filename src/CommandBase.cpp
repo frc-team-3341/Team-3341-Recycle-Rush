@@ -5,7 +5,7 @@
 Drive* CommandBase::drive = NULL;
 Elevator* CommandBase::elevator = NULL;
 OI* CommandBase::oi = NULL;
-IRSensor* CommandBase::ir = NULL;
+SensorBar* CommandBase::ir = NULL;
 CommandBase::CommandBase(char const *name) :
 		Command(name)
 {
@@ -24,5 +24,5 @@ void CommandBase::init()
 	drive = new Drive();
 	elevator = new Elevator();
 	oi = new OI();
-	ir = new IRSensor();
+	ir = new SensorBar();
 }

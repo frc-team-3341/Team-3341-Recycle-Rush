@@ -24,6 +24,6 @@ public:
 	static Drive* drive;
 	static Elevator* elevator;
 	static OI *oi;
-	static IRSensor *ir;
+	static SensorBar *ir;
 };
 #endif

@@ -11,10 +11,11 @@ class SensorBar: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
+	I2C* arduino;
 public:
 	SensorBar();
 	void InitDefaultCommand();
-	char* GetIr();
+	unsigned char* GetIr();
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "NetworkTablesInterface.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
+#include <stdint.h>
 
 class Robot: public IterativeRobot
 {
@@ -53,8 +54,13 @@ private:
 		//else
 			//printf("Tote not found\n");
 		Scheduler::GetInstance()->Run();
-		byte* irVals = CommandBase::ir->GetIr();
-		SmartDashboard::PutData(irVals);
+		//char irVals[8] = {0,0,0,0,0,0,0,0};
+		unsigned char *irVals;
+		irVals = CommandBase::ir->GetIr();
+		for(int i = 0; i < 8; i++){
+			SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
+
+		}
 	}
 
 	void TestPeriodic()

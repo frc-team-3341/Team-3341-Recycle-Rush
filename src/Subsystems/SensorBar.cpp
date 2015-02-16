@@ -1,14 +1,14 @@
 #include "SensorBar.h"
 #include "../RobotMap.h"
-#include <I2C.h>
+//#include <I2C.h>
 #include <wpilib.h>
+#include <stdint.h>
 
-//I2C arduino;
-
-SensorBar::SensorBar() :
-		Subsystem("ExampleSubsystem")
+SensorBar::SensorBar() :Subsystem("SensorBar")
 {
-
+	enum I2C::Port a = I2C::Port::kOnboard;
+	unsigned char num = (unsigned char)41;
+	arduino = new I2C(a, num);
 }
 
 void SensorBar::InitDefaultCommand()
@@ -19,11 +19,16 @@ void SensorBar::InitDefaultCommand()
 	//SetDefaultCommand(new MySpecialCommand());
 }
 
-char* SensorBar::GetIr()
+unsigned char* SensorBar::GetIr()
 {
-	char*irValsInBytes = new char[8];
-	I2C::Read(0,5,irValsInBytes);
-	return irValsInBytes;
+	unsigned char* irValsInBytes;
+	bool returnSuccesfully = arduino->Read(41,5,irValsInBytes);
+	if(returnSuccesfully){
+		return irValsInBytes;
+	}
+	else{
+		return NULL;
+	}
 
 }
 // Put methods for controlling this subsystem
