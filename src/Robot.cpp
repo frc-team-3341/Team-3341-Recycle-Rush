@@ -58,7 +58,7 @@ private:
 		unsigned char *irVals;
 		irVals = CommandBase::ir->GetIr();
 		for(int i = 0; i < 8; i++){
-			SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
+			//SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
 
 		}
 	}
