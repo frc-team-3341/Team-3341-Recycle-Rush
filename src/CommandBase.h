@@ -25,6 +25,6 @@ public:
 	static Elevator* elevator;
 	static OI *oi;
 	static SensorBar *ir;
-	//test purposes only
+
 };
 #endif
