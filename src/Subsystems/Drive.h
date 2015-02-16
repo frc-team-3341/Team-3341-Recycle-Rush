@@ -11,14 +11,15 @@ private:
 	Talon* right;
 	Encoder* eLeft;
 	Encoder* eRight;
-	float Limit(float num);
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
 	Drive();
 	void arcadeDrive(float move, float rotate);
 	double GetDistance();
+	void ResetEncoders();
 	void InitDefaultCommand();
+	static float Limit(float num, float max);
 };
 
 #endif

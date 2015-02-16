@@ -13,11 +13,13 @@ public:
     double GetKi();
     void SetKd(double Kd);
     double GetKd();
+    double GetError();
 private:
     double Kp;
     double Ki;
     double Kd;
     double setPoint;
+    double error;
     double previousError;
     double integral;
 };

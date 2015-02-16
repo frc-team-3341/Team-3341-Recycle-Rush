@@ -41,6 +41,7 @@ private:
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
+		CommandBase::drive->ResetEncoders();
 	}
 
 	void TeleopPeriodic()
@@ -52,6 +53,7 @@ private:
 		}
 		//else
 			//printf("Tote not found\n");
+		printf("Distance: %f\n", CommandBase::drive->GetDistance());
 		Scheduler::GetInstance()->Run();
 	}
 

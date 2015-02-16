@@ -4,6 +4,7 @@
 #include "Commands/BothOn.h"
 #include "Commands/BothOff.h"
 #include "Commands/CVAlignTote.h"
+#include "Commands/AutoMove.h"
 
 OI::OI() :
  driveStick(new Joystick(DRIVESTICK)), operatorStick(new Joystick(OPERATORSTICK))
@@ -19,7 +20,10 @@ OI::OI() :
 	// CV auto-align control
 	Button* cvaligntote_button = new JoystickButton(operatorStick, 4);
 	cvaligntote_button->ToggleWhenPressed(new CVAlignTote());
+	Button* autoMoveButton = new JoystickButton (operatorStick,5);
+	autoMoveButton ->WhenPressed (new AutoMove());
 	// Process operator interface input here.
+
 }
 
 Joystick* OI::getDriveStick(){
