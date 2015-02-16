@@ -5,6 +5,7 @@
 #include "Commands/Command.h"
 #include "Subsystems/Drive.h"
 #include "Subsystems/Elevator.h"
+#include "Subsystems/SensorBar.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -23,5 +24,6 @@ public:
 	static Drive* drive;
 	static Elevator* elevator;
 	static OI *oi;
+	static IRSensor *ir;
 };
 #endif

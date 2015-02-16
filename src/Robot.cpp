@@ -43,6 +43,8 @@ private:
 	void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
+		byte* irVals = CommandBase::ir->GetIr();
+		SmartDashboard::PutData(irVals);
 	}
 
 	void TestPeriodic()

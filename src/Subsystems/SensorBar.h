@@ -14,6 +14,7 @@ private:
 public:
 	SensorBar();
 	void InitDefaultCommand();
+	char* GetIr();
 };
 
 #endif
