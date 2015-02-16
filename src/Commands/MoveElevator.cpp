@@ -16,7 +16,7 @@ void MoveElevator::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void MoveElevator::Execute()
 {
-	elevator->moveElevator(oi->getOperatorStick()->GetY());
+	elevator->moveElevator(-oi->getOperatorStick()->GetY());
 }
 
 // Make this return true when this Command no longer needs to run execute()

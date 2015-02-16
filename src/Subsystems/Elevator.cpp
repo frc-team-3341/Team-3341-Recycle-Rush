@@ -19,10 +19,24 @@ void Elevator::clawOff()
 	clawControl = false;
 }
 
+void Elevator::bothOn()
+{
+	both = true;
+}
+
+void Elevator::bothOff()
+{
+	both = false;
+}
+
 void Elevator::moveElevator(float speed){
-	printf("Claw: %f; Hooks: %f\n", s1Encoder->GetDistance(), s2Encoder->GetDistance());
+	//printf("Claw: %f; Hooks: %f\n", s1Encoder->GetDistance(), s2Encoder->GetDistance());
 	if(clawControl)
 		s1Screw->Set(speed);
+	else if(both){
+		s1Screw->Set(speed);
+		s2Screw->Set(speed);
+	}
 	else
 		s2Screw->Set(speed);
 }

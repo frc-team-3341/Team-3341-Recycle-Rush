@@ -1,39 +1,39 @@
-#include "ArcadeDrive.h"
+#include "BothOn.h"
 
-ArcadeDrive::ArcadeDrive()
+BothOn::BothOn()
 {
-	Requires(drive);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void ArcadeDrive::Initialize()
+void BothOn::Initialize()
 {
-
+	elevator->moveElevator(0);
+	elevator->bothOn();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ArcadeDrive::Execute()
+void BothOn::Execute()
 {
-	drive->arcadeDrive(-oi->getDriveStick()->GetY(), -oi->getDriveStick()->GetZ());
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ArcadeDrive::IsFinished()
+bool BothOn::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
-void ArcadeDrive::End()
+void BothOn::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ArcadeDrive::Interrupted()
+void BothOn::Interrupted()
 {
 
 }

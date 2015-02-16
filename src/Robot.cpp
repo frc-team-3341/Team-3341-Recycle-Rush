@@ -1,4 +1,5 @@
 #include "WPILib.h"
+#include "NetworkTablesInterface.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
 
@@ -10,6 +11,7 @@ private:
 
 	void RobotInit()
 	{
+		NetworkTablesInterface::GetInstance()->Update();
 		CommandBase::init();
 		lw = LiveWindow::GetInstance();
 	}
@@ -27,6 +29,7 @@ private:
 
 	void AutonomousPeriodic()
 	{
+		NetworkTablesInterface::GetInstance()->Update();
 		Scheduler::GetInstance()->Run();
 	}
 
@@ -42,6 +45,13 @@ private:
 
 	void TeleopPeriodic()
 	{
+		NetworkTablesInterface::GetInstance()->Update();
+		if(NetworkTablesInterface::GetInstance()->ToteFound()){
+			printf("Distance: %f; Azimuth: %f\n", NetworkTablesInterface::GetInstance()->GetDistance(),
+					NetworkTablesInterface::GetInstance()->GetAzimuth());
+		}
+		//else
+			//printf("Tote not found\n");
 		Scheduler::GetInstance()->Run();
 		byte* irVals = CommandBase::ir->GetIr();
 		SmartDashboard::PutData(irVals);

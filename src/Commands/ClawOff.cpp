@@ -10,6 +10,7 @@ ClawOff::ClawOff()
 // Called just before this Command runs the first time
 void ClawOff::Initialize()
 {
+	elevator->moveElevator(0);
 	elevator->clawOff();
 }
 
@@ -22,6 +23,7 @@ void ClawOff::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool ClawOff::IsFinished()
 {
+
 	return true;
 }
 
