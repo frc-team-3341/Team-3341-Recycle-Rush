@@ -22,7 +22,7 @@ void SensorBar::InitDefaultCommand()
 char* SensorBar::GetIr()
 {
 	char*irValsInBytes = new char[8];
-	I2C::Read(0,5,hi);
+	I2C::Read(0,5,irValsInBytes);
 	return irValsInBytes;
 
 }
