@@ -5,8 +5,12 @@
 Drive* CommandBase::drive = NULL;
 Elevator* CommandBase::elevator = NULL;
 OI* CommandBase::oi = NULL;
+<<<<<<< HEAD
 GyroSubsystem* CommandBase::gyro = NULL;
 
+=======
+SensorBar* CommandBase::ir = NULL;
+>>>>>>> FETCH_HEAD
 CommandBase::CommandBase(char const *name) :
 		Command(name)
 {
@@ -25,5 +29,9 @@ void CommandBase::init()
 	drive = new Drive();
 	elevator = new Elevator();
 	oi = new OI();
+<<<<<<< HEAD
 	gyro = new GyroSubsystem();
+=======
+	ir = new SensorBar();
+>>>>>>> FETCH_HEAD
 }

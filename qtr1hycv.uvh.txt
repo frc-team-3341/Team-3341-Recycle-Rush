@@ -1,0 +1,45 @@
+﻿Merge branch 'master' of https://github.com/frc-team-3341/Team-3341-Recycle-Rush
+
+Conflicts:
+	.settings/language.settings.xml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 9 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .settings/language.settings.xml
+#	modified:   src/Commands/ArcadeDrive.cpp
+#	new file:   src/Commands/BothOff.cpp
+#	new file:   src/Commands/BothOff.h
+#	new file:   src/Commands/BothOn.cpp
+#	new file:   src/Commands/BothOn.h
+#	new file:   src/Commands/CVAlignTote.cpp
+#	new file:   src/Commands/CVAlignTote.h
+#	modified:   src/Commands/ClawOff.cpp
+#	modified:   src/Commands/ClawOn.cpp
+#	modified:   src/Commands/MoveElevator.cpp
+#	modified:   src/NetworkTablesInterface.cpp
+#	new file:   src/NewPIDController.cpp
+#	new file:   src/NewPIDController.h
+#	modified:   src/OI.cpp
+#	modified:   src/Robot.cpp
+#	modified:   src/RobotMap.h
+#	modified:   src/Subsystems/Drive.cpp
+#	modified:   src/Subsystems/Drive.h
+#	modified:   src/Subsystems/Elevator.cpp
+#	modified:   src/Subsystems/Elevator.h
+#	modified:   sysProps.xml
+#
+
