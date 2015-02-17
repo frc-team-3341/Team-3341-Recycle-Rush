@@ -21,15 +21,22 @@ void SensorBar::InitDefaultCommand()
 
 unsigned char* SensorBar::GetIr()
 {
-	unsigned char* irValsInBytes;
-	bool returnSuccesfully = arduino->Read(41,5,irValsInBytes);
+	GetIrs();
+
 	if(returnSuccesfully){
 		return irValsInBytes;
 	}
 	else{
 		return NULL;
 	}
+}
+//private method
+unsigned char* SensorBar::GetIrs(){
 
+
+		unsigned short data[16];
+		bool returnSuccesfully = arduino->Read(1 /*arbutrary register */, 8 * sizeof(data[0]),data);
+	return NULL;
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

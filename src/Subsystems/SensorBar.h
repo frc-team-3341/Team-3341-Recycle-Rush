@@ -12,6 +12,7 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	I2C* arduino;
+	unsigned char* GetIrs();
 public:
 	SensorBar();
 	void InitDefaultCommand();
