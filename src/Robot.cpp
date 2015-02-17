@@ -11,7 +11,6 @@ private:
 
 	void RobotInit()
 	{
-		NetworkTablesInterface::GetInstance()->Update();
 		CommandBase::init();
 		lw = LiveWindow::GetInstance();
 	}
@@ -29,7 +28,6 @@ private:
 
 	void AutonomousPeriodic()
 	{
-		NetworkTablesInterface::GetInstance()->Update();
 		Scheduler::GetInstance()->Run();
 	}
 
@@ -42,19 +40,22 @@ private:
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
 		CommandBase::drive->ResetEncoders();
+		CommandBase::gyro->ResetGyro();
 	}
 
 	void TeleopPeriodic()
 	{
-		NetworkTablesInterface::GetInstance()->Update();
-		if(NetworkTablesInterface::GetInstance()->ToteFound()){
-			printf("Distance: %f; Azimuth: %f\n", NetworkTablesInterface::GetInstance()->GetDistance(),
-					NetworkTablesInterface::GetInstance()->GetAzimuth());
-		}
-		//else
-			//printf("Tote not found\n");
-		printf("Distance: %f\n", CommandBase::drive->GetDistance());
+		//SmartDashboard::PutBoolean("Tote Found", NetworkTablesInterface::GetInstance()->ToteFound());
+		//SmartDashboard::PutNumber("Distance", NetworkTablesInterface::GetInstance()->GetDistance());
+		//SmartDashboard::PutNumber("Azimuth", NetworkTablesInterface::GetInstance()->GetAzimuth());
+//		if(NetworkTablesInterface::GetInstance()->ToteFound()){
+//			printf("Distance: %f; Azimuth: %f\n", NetworkTablesInterface::GetInstance()->GetDistance(),
+//					NetworkTablesInterface::GetInstance()->GetAzimuth());
+//		}
+
+		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
 		Scheduler::GetInstance()->Run();
+
 	}
 
 	void TestPeriodic()

@@ -24,6 +24,9 @@ double NewPIDController::Tick(double measuredValue)
 void NewPIDController::SetSetPoint(double setPoint)
 {
 	this->setPoint = setPoint;
+	integral = 0;
+	previousError = 0;
+	error = 0;
 }
 
 double NewPIDController::GetSetPoint()

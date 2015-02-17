@@ -20,6 +20,7 @@ public:
 	void ResetEncoders();
 	void InitDefaultCommand();
 	static float Limit(float num, float max);
+	//void ResetGyro();
 };
 
 #endif

@@ -5,10 +5,10 @@
 #include "../NewPIDController.h"
 #include "WPILib.h"
 
-class DriveXMeters: public CommandBase
+class TurnAndDrive: public CommandBase
 {
 public:
-	DriveXMeters(double distance);
+	TurnAndDrive(double distance, double angle);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -17,7 +17,9 @@ public:
 
 private:
 	double distance;
-	NewPIDController* pid;
+	double angle;
+	NewPIDController* distancePid;
+	NewPIDController* anglePid;
 };
 
 #endif
