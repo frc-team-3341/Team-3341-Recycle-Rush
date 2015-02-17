@@ -22,6 +22,7 @@ void Drive::ResetEncoders()
 }
 
 void Drive::arcadeDrive(float moveValue, float rotateValue){
+	printf("Left encoder: %f; Right encoder: %f\n", eLeft->Get()/1090.0, eRight->Get()/1090.0);
 		float leftMotorOutput;
 		float rightMotorOutput;
 

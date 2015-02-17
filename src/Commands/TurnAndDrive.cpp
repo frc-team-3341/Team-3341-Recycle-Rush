@@ -7,13 +7,15 @@ TurnAndDrive::TurnAndDrive(double inDistance, double inAngle)
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 	Requires(drive);
+	Requires(gyro);
 }
 
 // Called just before this Command runs the first time
 void TurnAndDrive::Initialize()
 {
 	drive->ResetEncoders();
-	distancePid = new NewPIDController(1.3125, 0, 0, distance);
+	gyro->ResetGyro();
+	distancePid = new NewPIDController(1.3125, 1e-1, 0, distance);
 	anglePid = new NewPIDController(.05, 1e-4, 0, angle);
 }
 
@@ -24,6 +26,8 @@ void TurnAndDrive::Execute()
 	double pwm_val = distancePid->Tick(current_distance);
 	double current_angle = gyro->GetAngle();
 	double rotateVal = anglePid->Tick(current_angle);
+	printf("Distance error: %f; Gyro error: %f; Distance Last PWM: %f; Angle Last PWM: %f\n",
+			distancePid->GetError(), anglePid->GetError(), distancePid->GetLastPWM(), anglePid->GetLastPWM());
 	drive->arcadeDrive(Drive::Limit(pwm_val,.5), -Drive::Limit(rotateVal, 1.0));
 	//printf("Setpoint: %f\nCurrent Distance: %f\nError: %f\nPWM Value: %f\n\n", distancePid->GetSetPoint(), current_distance, distancePid->GetError(), pwm_val);
 	//printf("Setpoint: %f\nCurrent Angle: %f\nError: %f\nPWM Value: %f\n\n", anglePid->GetSetPoint(), current_angle, anglePid->GetError(), rotateVal);
@@ -46,6 +50,7 @@ bool TurnAndDrive::IsFinished()
 void TurnAndDrive::End()
 {
 	drive->arcadeDrive(0,0);
+	printf("TurnAndDrive Finished!\n");
 }
 
 // Called when another command which requires one or more of the same

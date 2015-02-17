@@ -1,23 +1,15 @@
 #include "CVAlignTote.h"
 #include "CVDrive.h"
-
+#include "math.h"
+#include "TurnAndDrive.h"
 CVAlignTote::CVAlignTote()
 {
+	//for explanation look at diagram
 	AddSequential(new CVDrive());
-	// Add Commands here:
-	// e.g. AddSequential(new Command1());
-	//      AddSequential(new Command2());
-	// these will run in order.
+	AddSequential(new TurnAndDrive(-0.25,0)); //moving backwards y1
+	AddSequential(new TurnAndDrive(0,-20)); //turning theta degrees (look at diagram) where x = 0.3
+	AddSequential(new TurnAndDrive(0.1,0)); //moving forward y2
+	AddSequential(new TurnAndDrive(0, 20)); //turning back to straight original position
+	AddSequential(new TurnAndDrive(0.125,0)); // moving forward to its position next to the tote
 
-	// To run multiple commands at the same time,
-	// use AddParallel()
-	// e.g. AddParallel(new Command1());
-	//      AddSequential(new Command2());
-	// Command1 and Command2 will run in parallel.
-
-	// A command group will require all of the subsystems that each member
-	// would require.
-	// e.g. if Command1 requires chassis, and Command2 requires arm,
-	// a CommandGroup containing them would require both the chassis and the
-	// arm.
 }

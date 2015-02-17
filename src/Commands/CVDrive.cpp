@@ -38,7 +38,7 @@ void CVDrive::Execute()
 	double pwm_val = distancePid->Tick(current_distance);
 	double current_angle = gyro->GetAngle();
 	double rotateVal = anglePid->Tick(current_angle);
-	printf("Distance error: %f; Gyro error: %f\n", distancePid->GetError(), anglePid->GetError());
+	printf("Distance error: %f; Gyro error: %f; Last Distance PWM: %f; Last Angle PWM: %f\n", distancePid->GetError(), anglePid->GetError(), distancePid->GetLastPWM(), anglePid->GetLastPWM());
 	drive->arcadeDrive(Drive::Limit(pwm_val,.5), -Drive::Limit(rotateVal, 1.0));
 }
 
