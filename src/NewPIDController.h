@@ -13,13 +13,17 @@ public:
     double GetKi();
     void SetKd(double Kd);
     double GetKd();
+    double GetError();
+    double GetLastPWM();
 private:
     double Kp;
     double Ki;
     double Kd;
     double setPoint;
+    double error;
     double previousError;
     double integral;
+    double lastPWM;
 };
 
 #endif

@@ -13,17 +13,21 @@ NewPIDController::NewPIDController(double Kp, double Ki, double Kd, double setPo
 
 double NewPIDController::Tick(double measuredValue)
 {
-	double error = setPoint - measuredValue;
+	error = setPoint - measuredValue;
 	integral += error;
 	double derivative = error - previousError;
 	previousError = error;
 
-	return Kp * error + Ki * integral + Kd * derivative;
+	lastPWM = Kp * error + Ki * integral + Kd * derivative;
+	return lastPWM;
 }
 
 void NewPIDController::SetSetPoint(double setPoint)
 {
 	this->setPoint = setPoint;
+	integral = 0;
+	previousError = 0;
+	error = 0;
 }
 
 double NewPIDController::GetSetPoint()
@@ -60,4 +64,14 @@ void NewPIDController::SetKd(double Kd)
 double NewPIDController::GetKd()
 {
 	return Kd;
+}
+
+double NewPIDController::GetError()
+{
+	return error;
+}
+
+double NewPIDController::GetLastPWM()
+{
+	return lastPWM;
 }

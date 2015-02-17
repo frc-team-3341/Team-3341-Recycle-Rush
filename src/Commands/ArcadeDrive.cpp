@@ -1,8 +1,10 @@
 #include "ArcadeDrive.h"
 
 ArcadeDrive::ArcadeDrive()
+	:isReset(true)
 {
 	Requires(drive);
+	Requires(gyro);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
@@ -10,13 +12,32 @@ ArcadeDrive::ArcadeDrive()
 // Called just before this Command runs the first time
 void ArcadeDrive::Initialize()
 {
-
+	gyro->ResetGyro();
+	anglePid = new NewPIDController(.05,0,0,0);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArcadeDrive::Execute()
 {
-	drive->arcadeDrive(-oi->getDriveStick()->GetY(), -oi->getDriveStick()->GetZ());
+	if(fabs(oi->getDriveStick()->GetZ()) >= 0.05)
+	{
+		isReset = false;
+		drive->arcadeDrive(-oi->getDriveStick()->GetY(), -oi->getDriveStick()->GetZ());
+	}
+	else{
+		if(!isReset){
+			drive->arcadeDrive(0,0);
+			Wait(.05);
+			isReset = true;
+			gyro->ResetGyro();
+		}
+		if(fabs(oi->getDriveStick()->GetY()) >= .05)
+			drive->arcadeDrive(-oi->getDriveStick()->GetY(), anglePid->Tick(-gyro->GetAngle()));
+		else
+		{
+			drive->arcadeDrive(0,0);
+		}
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
