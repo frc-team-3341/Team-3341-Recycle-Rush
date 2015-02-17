@@ -1,21 +1,24 @@
-#ifndef ArcadeDrive_H
-#define ArcadeDrive_H
+#ifndef DriveXFeet_H
+#define DriveXFeet_H
 
 #include "../CommandBase.h"
 #include "../NewPIDController.h"
 #include "WPILib.h"
 
-class ArcadeDrive: public CommandBase
+class TurnAndDrive: public CommandBase
 {
 public:
-	ArcadeDrive();
+	TurnAndDrive(double distance, double angle);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
 private:
-	bool isReset;
+	double distance;
+	double angle;
+	NewPIDController* distancePid;
 	NewPIDController* anglePid;
 };
 

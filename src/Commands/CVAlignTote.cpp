@@ -1,53 +1,23 @@
-#include <NewPIDController.h>
-#include "../NetworkTablesInterface.h"
 #include "CVAlignTote.h"
+#include "CVDrive.h"
 
 CVAlignTote::CVAlignTote()
 {
-	Requires(drive);
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
-}
+	AddSequential(new CVDrive());
+	// Add Commands here:
+	// e.g. AddSequential(new Command1());
+	//      AddSequential(new Command2());
+	// these will run in order.
 
-// Called just before this Command runs the first time
-void CVAlignTote::Initialize()
-{
-	// Goal is to get to 2 feet away and pointed directly at the tote
-	distance_ctl = new NewPIDController(1e-1, 0, 0, 0.6096 /* 2 feet in meters */);
-	azimuth_ctl = new NewPIDController(1e-1, 0, 0, 0);
-	
-}
+	// To run multiple commands at the same time,
+	// use AddParallel()
+	// e.g. AddParallel(new Command1());
+	//      AddSequential(new Command2());
+	// Command1 and Command2 will run in parallel.
 
-// Called repeatedly when this Command is scheduled to run
-void CVAlignTote::Execute()
-{
-	if (NetworkTablesInterface::GetInstance()->ToteFound())
-	{
-		drive->arcadeDrive(distance_ctl->Tick(NetworkTablesInterface::GetInstance()->GetDistance()),
-				   azimuth_ctl->Tick(NetworkTablesInterface::GetInstance()->GetAzimuth()));
-	}
-	else
-	{
-		drive->arcadeDrive(0, 0);
-	}
-}
-
-// Make this return true when this Command no longer needs to run execute()
-bool CVAlignTote::IsFinished()
-{
-	return !NetworkTablesInterface::GetInstance()->ToteFound();
-}
-
-// Called once after isFinished returns true
-void CVAlignTote::End()
-{
-	delete distance_ctl;
-	delete azimuth_ctl;
-}
-
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void CVAlignTote::Interrupted()
-{
-
+	// A command group will require all of the subsystems that each member
+	// would require.
+	// e.g. if Command1 requires chassis, and Command2 requires arm,
+	// a CommandGroup containing them would require both the chassis and the
+	// arm.
 }
