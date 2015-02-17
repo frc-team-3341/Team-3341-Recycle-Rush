@@ -9,7 +9,7 @@ OI* CommandBase::oi = NULL;
 GyroSubsystem* CommandBase::gyro = NULL;
 
 
-SensorBar* CommandBase::ir = NULL;
+//SensorBar* CommandBase::ir = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -32,6 +32,6 @@ void CommandBase::init()
 
 	gyro = new GyroSubsystem();
 
-	ir = new SensorBar();
+	//ir = new SensorBar();
 
 }

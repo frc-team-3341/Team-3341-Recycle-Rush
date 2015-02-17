@@ -27,13 +27,16 @@ void ArcadeDrive::Execute()
 	else{
 		if(!isReset){
 			drive->arcadeDrive(0,0);
+			Wait(.05);
 			isReset = true;
 			gyro->ResetGyro();
 		}
 		if(fabs(oi->getDriveStick()->GetY()) >= .05)
 			drive->arcadeDrive(-oi->getDriveStick()->GetY(), anglePid->Tick(-gyro->GetAngle()));
 		else
+		{
 			drive->arcadeDrive(0,0);
+		}
 	}
 }
 
