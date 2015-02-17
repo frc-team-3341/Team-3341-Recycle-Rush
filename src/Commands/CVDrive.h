@@ -1,21 +1,23 @@
-#ifndef ArcadeDrive_H
-#define ArcadeDrive_H
+#ifndef CVDrive_H
+#define CVDrive_H
 
 #include "../CommandBase.h"
 #include "../NewPIDController.h"
 #include "WPILib.h"
 
-class ArcadeDrive: public CommandBase
+class CVDrive: public CommandBase
 {
 public:
-	ArcadeDrive();
+	CVDrive();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	bool isReset;
+	double distance;
+	double angle;
+	NewPIDController* distancePid;
 	NewPIDController* anglePid;
 };
 
