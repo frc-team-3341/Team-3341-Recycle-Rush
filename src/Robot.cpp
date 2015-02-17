@@ -56,9 +56,9 @@ private:
 
 		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
 		Scheduler::GetInstance()->Run();
-<<<<<<< HEAD
 
-=======
+
+
 		//char irVals[8] = {0,0,0,0,0,0,0,0};
 		unsigned char *irVals;
 		irVals = CommandBase::ir->GetIr();
@@ -66,7 +66,7 @@ private:
 			SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
 
 		}
->>>>>>> FETCH_HEAD
+
 	}
 
 	void TestPeriodic()

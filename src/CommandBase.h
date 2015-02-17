@@ -5,11 +5,11 @@
 #include "Commands/Command.h"
 #include "Subsystems/Drive.h"
 #include "Subsystems/Elevator.h"
-<<<<<<< HEAD
+
 #include "Subsystems/GyroSubsystem.h"
-=======
+
 #include "Subsystems/SensorBar.h"
->>>>>>> FETCH_HEAD
+
 #include "OI.h"
 #include "WPILib.h"
 
@@ -28,11 +28,11 @@ public:
 	static Drive* drive;
 	static Elevator* elevator;
 	static OI *oi;
-<<<<<<< HEAD
+
 	static GyroSubsystem* gyro;
-=======
+
 	static SensorBar *ir;
 
->>>>>>> FETCH_HEAD
+
 };
 #endif
