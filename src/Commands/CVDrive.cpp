@@ -3,9 +3,15 @@
 
 CVDrive::CVDrive()
 {
+
 	Requires(drive);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
+
+	distance = 0;
+	angle = 0;
+	distancePid = NULL;
+	anglePid = NULL;
 }
 
 // Called just before this Command runs the first time
@@ -32,13 +38,14 @@ void CVDrive::Execute()
 	double pwm_val = distancePid->Tick(current_distance);
 	double current_angle = gyro->GetAngle();
 	double rotateVal = anglePid->Tick(current_angle);
+	printf("Distance error: %f; Gyro error: %f\n", distancePid->GetError(), anglePid->GetError());
 	drive->arcadeDrive(Drive::Limit(pwm_val,.5), -Drive::Limit(rotateVal, 1.0));
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool CVDrive::IsFinished()
 {
-	return (fabs(distancePid->GetError()) < 0.005 && fabs(anglePid->GetError()) < 0.7);
+	return (fabs(distancePid->GetError()) < 0.005) || (fabs(distancePid->GetLastPWM()) <= 0.05);
 }
 
 // Called once after isFinished returns true
@@ -47,6 +54,7 @@ void CVDrive::End()
 	drive->arcadeDrive(0,0);
 	delete distancePid;
 	delete anglePid;
+	printf("CVDrive Finished\n");
 }
 
 // Called when another command which requires one or more of the same

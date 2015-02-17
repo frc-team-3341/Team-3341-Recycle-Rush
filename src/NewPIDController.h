@@ -14,6 +14,7 @@ public:
     void SetKd(double Kd);
     double GetKd();
     double GetError();
+    double GetLastPWM();
 private:
     double Kp;
     double Ki;
@@ -22,6 +23,7 @@ private:
     double error;
     double previousError;
     double integral;
+    double lastPWM;
 };
 
 #endif

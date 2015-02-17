@@ -60,12 +60,12 @@ private:
 
 
 		//char irVals[8] = {0,0,0,0,0,0,0,0};
-		unsigned char *irVals;
-		irVals = CommandBase::ir->GetIr();
-		for(int i = 0; i < 8; i++){
-			SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
+		//unsigned char *irVals;
+		//irVals = CommandBase::ir->GetIr();
+		//for(int i = 0; i < 8; i++){
+			//SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
 
-		}
+		//}
 
 	}
 
