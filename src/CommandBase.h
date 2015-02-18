@@ -31,7 +31,7 @@ public:
 
 	static GyroSubsystem* gyro;
 
-	//static SensorBar *ir;
+	static SensorBar *ir;
 
 
 };
