@@ -9,7 +9,7 @@ Claw* CommandBase::claw = NULL;
 GyroSubsystem* CommandBase::gyro = NULL;
 Hook* CommandBase::hook = NULL;
 
-SensorBar* CommandBase::ir = NULL;
+//SensorBar* CommandBase::ir = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -31,12 +31,6 @@ void CommandBase::init()
 	oi = new OI();
 	claw = new Claw();
 	gyro = new GyroSubsystem();
-<<<<<<< HEAD
-	hook = new Hook();
 	//ir = new SensorBar();
-=======
-
-	ir = new SensorBar();
->>>>>>> frc-team-3341/master
 
 }
