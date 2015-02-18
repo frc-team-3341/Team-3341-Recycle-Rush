@@ -5,6 +5,7 @@
 #include "Commands/BothOff.h"
 #include "Commands/CVAlignTote.h"
 #include "NetworkTablesInterface.h"
+#include "CommandBase.h"
 
 OI::OI() :
  driveStick(new Joystick(DRIVESTICK)), operatorStick(new Joystick(OPERATORSTICK))
@@ -21,8 +22,12 @@ OI::OI() :
 	Button* cvaligntote_button = new JoystickButton(operatorStick, 4);
 	cvaligntote_button->ToggleWhenPressed(new CVAlignTote());
 	Button* autoMoveButton = new JoystickButton (operatorStick,5);
-	autoMoveButton ->WhenPressed (new CVAlignTote());
+	autoMoveButton ->WhenPressed (new CVAlignTote);
 	// Process operator interface input here.
+
+
+	//IRSensor
+	//Button* irSensor = new JoystickButton(CommandBase::ir->printValues());
 
 }
 

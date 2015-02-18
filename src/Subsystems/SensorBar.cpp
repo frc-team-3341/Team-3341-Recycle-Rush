@@ -1,3 +1,4 @@
+/*
 #include "SensorBar.h"
 #include "../RobotMap.h"
 //#include <I2C.h>
@@ -6,6 +7,7 @@
 
 SensorBar::SensorBar() :Subsystem("SensorBar")
 {
+
 	enum I2C::Port a = I2C::Port::kOnboard;
 	unsigned char num = (unsigned char)41;
 	arduino = new I2C(a, num);
@@ -117,3 +119,5 @@ void SensorBar::printValues(){
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+ * */
+ */

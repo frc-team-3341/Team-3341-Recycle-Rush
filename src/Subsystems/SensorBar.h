@@ -1,3 +1,4 @@
+/*
 #ifndef SensorBar_H
 #define SensorBar_H
 
@@ -13,6 +14,7 @@ private:
 	// for methods that implement subsystem capabilities
 	I2C* arduino;
 	int* irData;
+	int currentVal;
 	unsigned char* GetIrs();
 	int* getEdges(int list[], int maxI);
 	int* convert(unsigned char*);
@@ -27,3 +29,4 @@ public:
 };
 
 #endif
+*/
