@@ -61,14 +61,25 @@ private:
 		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
 		Scheduler::GetInstance()->Run();
 
+<<<<<<< HEAD
+=======
+/*
+>>>>>>> frc-team-3341/master
 
 		//char irVals[8] = {0,0,0,0,0,0,0,0};
+<<<<<<< HEAD
+		unsigned char *irVals;
+		irVals = CommandBase::ir->GetIr();
+		for(int i = 0; i < 8; i++){
+			//SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
+=======
 		//unsigned char *irVals;
 		//irVals = CommandBase::ir->GetIr();
 		//for(int i = 0; i < 8; i++){
 			//SmartDashboard::PutNumber("IR Data:, ", (double)irVals[i]);
 
 		//}
+>>>>>>> 900d5b39bab71ae7c90fccf1b571e2ca5588a1aa*/
 
 	}
 

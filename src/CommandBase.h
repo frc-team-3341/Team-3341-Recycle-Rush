@@ -30,8 +30,13 @@ public:
 	static OI *oi;
 	static Claw* claw;
 	static GyroSubsystem* gyro;
+<<<<<<< HEAD
 	static Hook* hook;
 	//static SensorBar *ir;
+=======
+
+	static SensorBar *ir;
+>>>>>>> frc-team-3341/master
 
 
 };
