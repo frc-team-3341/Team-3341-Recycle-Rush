@@ -17,7 +17,7 @@ void GyroSubsystem::InitDefaultCommand()
 
 double GyroSubsystem::GetAngle()
 {
-	return agyro->GetAngle();
+	return -agyro->GetAngle();
 }
 
 void GyroSubsystem::ResetGyro()

@@ -3,7 +3,7 @@
 
 class NewPIDController {
 public:
-    NewPIDController(double Kp, double Ki, double Kd, double setPoint);
+    NewPIDController(double Kp, double Ki, double Kd, double setPoint, bool integralThreshold);
     double Tick(double measuredValue);
     void SetSetPoint(double setPoint);
     double GetSetPoint();
@@ -16,6 +16,7 @@ public:
     double GetError();
     double GetLastPWM();
 private:
+    bool integralThreshold;
     double Kp;
     double Ki;
     double Kd;

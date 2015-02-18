@@ -27,8 +27,8 @@ void CVDrive::Initialize()
 	}
 	drive->ResetEncoders();
 	gyro->ResetGyro();
-	distancePid = new NewPIDController(1.3125, 0, 0, distance);
-	anglePid = new NewPIDController(.05, 0, 0, -angle);
+	distancePid = new NewPIDController(1.3125, 0, 0, distance, false);
+	anglePid = new NewPIDController(.05, 0, 0, angle, false);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -38,8 +38,8 @@ void CVDrive::Execute()
 	double pwm_val = distancePid->Tick(current_distance);
 	double current_angle = gyro->GetAngle();
 	double rotateVal = anglePid->Tick(current_angle);
-	printf("Distance error: %f; Gyro error: %f\n", distancePid->GetError(), anglePid->GetError());
-	drive->arcadeDrive(Drive::Limit(pwm_val,.5), -Drive::Limit(rotateVal, 1.0));
+	printf("Distance error: %f; Gyro error: %f; Last Distance PWM: %f; Last Angle PWM: %f\n", distancePid->GetError(), anglePid->GetError(), distancePid->GetLastPWM(), anglePid->GetLastPWM());
+	drive->arcadeDrive(Drive::Limit(pwm_val,.5), Drive::Limit(rotateVal, 1.0));
 }
 
 // Make this return true when this Command no longer needs to run execute()

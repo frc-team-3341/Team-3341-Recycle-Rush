@@ -13,7 +13,7 @@ ArcadeDrive::ArcadeDrive()
 void ArcadeDrive::Initialize()
 {
 	gyro->ResetGyro();
-	anglePid = new NewPIDController(.05,0,0,0);
+	anglePid = new NewPIDController(.05,0,0,0, false);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -32,7 +32,7 @@ void ArcadeDrive::Execute()
 			gyro->ResetGyro();
 		}
 		if(fabs(oi->getDriveStick()->GetY()) >= .05)
-			drive->arcadeDrive(-oi->getDriveStick()->GetY(), anglePid->Tick(-gyro->GetAngle()));
+			drive->arcadeDrive(-oi->getDriveStick()->GetY(), anglePid->Tick(gyro->GetAngle()));
 		else
 		{
 			drive->arcadeDrive(0,0);

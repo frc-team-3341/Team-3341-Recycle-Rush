@@ -7,14 +7,17 @@ TurnAndDrive::TurnAndDrive(double inDistance, double inAngle)
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 	Requires(drive);
+	Requires(gyro);
 }
 
 // Called just before this Command runs the first time
 void TurnAndDrive::Initialize()
 {
+	SetTimeout(2);
 	drive->ResetEncoders();
-	distancePid = new NewPIDController(1.3125, 0, 0, distance);
-	anglePid = new NewPIDController(.05, 1e-4, 0, angle);
+	gyro->ResetGyro();
+	distancePid = new NewPIDController(1.0, 0.05, 0.0, distance, true);
+	anglePid = new NewPIDController(0.03, 1e-3, 0, angle, false);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -24,7 +27,9 @@ void TurnAndDrive::Execute()
 	double pwm_val = distancePid->Tick(current_distance);
 	double current_angle = gyro->GetAngle();
 	double rotateVal = anglePid->Tick(current_angle);
-	drive->arcadeDrive(Drive::Limit(pwm_val,.5), -Drive::Limit(rotateVal, 1.0));
+	printf("Distance setpoint: %f; Current distance: %f; Distance error: %f; Distance Last PWM: %f; Distance rate: %f\n",
+			distancePid->GetSetPoint(), current_distance, distancePid->GetError(), distancePid->GetLastPWM(), drive->GetRate());
+	drive->arcadeDrive(Drive::Limit(pwm_val,.5), Drive::Limit(rotateVal, 1.0));
 	//printf("Setpoint: %f\nCurrent Distance: %f\nError: %f\nPWM Value: %f\n\n", distancePid->GetSetPoint(), current_distance, distancePid->GetError(), pwm_val);
 	//printf("Setpoint: %f\nCurrent Angle: %f\nError: %f\nPWM Value: %f\n\n", anglePid->GetSetPoint(), current_angle, anglePid->GetError(), rotateVal);
 	//printf("%f", current_distance);
@@ -39,13 +44,14 @@ void TurnAndDrive::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool TurnAndDrive::IsFinished()
 {
-	return (fabs(distancePid->GetError()) < 0.005) && (fabs(anglePid->GetError()) < 0.7);
+	return (((fabs(distancePid->GetError()) < 0.005) && (fabs(anglePid->GetError()) < 0.5) && (fabs(drive->GetRate()) < 1e-3)) || IsTimedOut());
 }
 
 // Called once after isFinished returns true
 void TurnAndDrive::End()
 {
 	drive->arcadeDrive(0,0);
+	printf("TurnAndDrive Finished!\n");
 }
 
 // Called when another command which requires one or more of the same

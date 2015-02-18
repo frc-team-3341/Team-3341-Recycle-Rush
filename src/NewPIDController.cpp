@@ -1,12 +1,13 @@
 #include <NewPIDController.h>
 
-NewPIDController::NewPIDController(double Kp, double Ki, double Kd, double setPoint)
+NewPIDController::NewPIDController(double Kp, double Ki, double Kd, double setPoint, bool integralThreshold)
+	:lastPWM(0),error(0)
 {
 	this->Kp = Kp;
 	this->Ki = Ki;
 	this->Kd = Kd;
 	this->setPoint = setPoint;
-
+	this->integralThreshold = integralThreshold;
 	previousError = 0.0;
 	integral = 0.0;
 }
@@ -14,7 +15,12 @@ NewPIDController::NewPIDController(double Kp, double Ki, double Kd, double setPo
 double NewPIDController::Tick(double measuredValue)
 {
 	error = setPoint - measuredValue;
-	integral += error;
+	if(integralThreshold){
+		if(error <= .1)
+			integral += error;
+	}
+	else
+		integral +=error;
 	double derivative = error - previousError;
 	previousError = error;
 

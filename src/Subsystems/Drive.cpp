@@ -105,6 +105,11 @@ double Drive::GetDistance()
 	return -((double)((eLeft->Get())/1090.0) - (double)((eRight->Get())/1090.0)) / 2.0;
 }
 
+double Drive::GetRate()
+{
+	return -((double)((eLeft->GetRate())/1090.0) - (double)((eRight->GetRate())/1090.0)) / 2.0;
+}
+
 void Drive::InitDefaultCommand()
 {
 	SetDefaultCommand(new ArcadeDrive());
