@@ -22,7 +22,6 @@ void Drive::ResetEncoders()
 }
 
 void Drive::arcadeDrive(float moveValue, float rotateValue){
-	printf("Left encoder: %f; Right encoder: %f\n", eLeft->Get()/1090.0, eRight->Get()/1090.0);
 		float leftMotorOutput;
 		float rightMotorOutput;
 
@@ -104,6 +103,11 @@ float Drive::Limit(float num, float max)
 double Drive::GetDistance()
 {
 	return -((double)((eLeft->Get())/1090.0) - (double)((eRight->Get())/1090.0)) / 2.0;
+}
+
+double Drive::GetRate()
+{
+	return -((double)((eLeft->GetRate())/1090.0) - (double)((eRight->GetRate())/1090.0)) / 2.0;
 }
 
 void Drive::InitDefaultCommand()

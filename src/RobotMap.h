@@ -38,6 +38,12 @@ const int SCREW_2 = 3;
 const int SCREW_2_ENCODER_1 = 6;
 const int SCREW_2_ENCODER_2 = 7;
 
+//CLAW
+const int CLAW_LEFT = 4;
+const int CLAW_RIGHT = 5;
+
+//HOOK
+const int HOOK = 6;
 
 //JOYSTICKS
 const int DRIVESTICK = 0;

@@ -14,6 +14,10 @@ private:
 	{
 		CommandBase::init();
 		lw = LiveWindow::GetInstance();
+		SmartDashboard::PutNumber("step_size", 0.0);
+		SmartDashboard::PutNumber("distanceP", 1.3125);
+		SmartDashboard::PutNumber("distanceI", 0.0);
+		SmartDashboard::PutNumber("distanceD", 0.0);
 	}
 	
 	void DisabledPeriodic()
@@ -56,7 +60,6 @@ private:
 
 		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
 		Scheduler::GetInstance()->Run();
-
 
 
 		//char irVals[8] = {0,0,0,0,0,0,0,0};

@@ -5,9 +5,9 @@
 Drive* CommandBase::drive = NULL;
 Elevator* CommandBase::elevator = NULL;
 OI* CommandBase::oi = NULL;
-
+Claw* CommandBase::claw = NULL;
 GyroSubsystem* CommandBase::gyro = NULL;
-
+Hook* CommandBase::hook = NULL;
 
 //SensorBar* CommandBase::ir = NULL;
 
@@ -29,9 +29,9 @@ void CommandBase::init()
 	drive = new Drive();
 	elevator = new Elevator();
 	oi = new OI();
-
+	claw = new Claw();
 	gyro = new GyroSubsystem();
-
+	hook = new Hook();
 	//ir = new SensorBar();
 
 }
