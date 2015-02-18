@@ -13,6 +13,7 @@ TurnAndDrive::TurnAndDrive(double inDistance, double inAngle)
 // Called just before this Command runs the first time
 void TurnAndDrive::Initialize()
 {
+	SetTimeout(2);
 	drive->ResetEncoders();
 	gyro->ResetGyro();
 	distancePid = new NewPIDController(1.0, 0.05, 0.0, distance, true);
@@ -43,7 +44,7 @@ void TurnAndDrive::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool TurnAndDrive::IsFinished()
 {
-	return (fabs(distancePid->GetError()) < 0.005) && (fabs(anglePid->GetError()) < 0.5) && (fabs(drive->GetRate()) < 1e-3);
+	return (((fabs(distancePid->GetError()) < 0.005) && (fabs(anglePid->GetError()) < 0.5) && (fabs(drive->GetRate()) < 1e-3)) || IsTimedOut());
 }
 
 // Called once after isFinished returns true
