@@ -32,15 +32,11 @@ OI::OI() :
 	retractHook->WhenPressed(new RetractHook());
 	// Automove control
 	Button* autoMoveButton = new JoystickButton (operatorStick,5);
-<<<<<<< HEAD
-	autoMoveButton ->WhenPressed (new CVAlignTote);
-=======
 	autoMoveButton ->WhenPressed (new CVAlignTote());
 
 	// Step response control
 	//Button* stepresponse_button = new JoystickButton(operatorStick, 6);
 	//stepresponse_button->WhenPressed(new GetStepResponse());
->>>>>>> ce82b9bccb83351ebff9421c6c54434a460eb64a
 	// Process operator interface input here.
 
 
