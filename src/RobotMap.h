@@ -30,10 +30,12 @@ const int DRIVE_RIGHT = 1;
 const int ENCODER_RIGHT_1 = 2;
 const int ENCODER_RIGHT_2 = 3;
 
-//ELEVATOR
+//CLAW ELEVATOR
 const int SCREW_1 = 2;
 const int SCREW_1_ENCODER_1 = 4;
 const int SCREW_1_ENCODER_2 = 5;
+
+//HOOK ELEVATOR
 const int SCREW_2 = 3;
 const int SCREW_2_ENCODER_1 = 6;
 const int SCREW_2_ENCODER_2 = 7;
