@@ -1,13 +1,13 @@
-#ifndef RetractHook_H
-#define RetractHook_H
+#ifndef DriveForward_H
+#define DriveForward_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class RetractHook: public CommandBase
+class DriveForward: public CommandBase
 {
 public:
-	RetractHook();
+	DriveForward();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

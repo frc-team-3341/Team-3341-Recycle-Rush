@@ -9,11 +9,14 @@
 Drive::Drive() :
 		Subsystem("Drive"), left(new Talon(DRIVE_LEFT)), right(new Talon(DRIVE_RIGHT)),
 		eLeft(new Encoder(ENCODER_LEFT_1, ENCODER_LEFT_2)),
-		eRight(new Encoder(ENCODER_RIGHT_1, ENCODER_RIGHT_2))
+		eRight(new Encoder(ENCODER_RIGHT_1, ENCODER_RIGHT_2)), mult(1.0)
 
 {
 			eLeft->SetDistancePerPulse(1.0);
 			eRight->SetDistancePerPulse(1.0);
+}
+void Drive::setMult(float m){
+	mult = m;
 }
 void Drive::ResetEncoders()
 {
@@ -25,7 +28,7 @@ void Drive::arcadeDrive(float moveValue, float rotateValue){
 		float leftMotorOutput;
 		float rightMotorOutput;
 
-		moveValue = Drive::Limit(moveValue,1.0);
+		moveValue = Drive::Limit(moveValue,1.0) * mult;
 		rotateValue = Drive::Limit(rotateValue,1.0);
 
 		if (moveValue > 0.0)

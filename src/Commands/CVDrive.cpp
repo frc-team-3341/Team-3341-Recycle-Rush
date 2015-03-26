@@ -18,7 +18,7 @@ CVDrive::CVDrive()
 void CVDrive::Initialize()
 {
 	if(NetworkTablesInterface::ToteFound()){
-		distance = NetworkTablesInterface::GetDistance() - .05;
+		distance = NetworkTablesInterface::GetDistance();
 		angle = NetworkTablesInterface::GetAzimuth();
 	}
 	else{

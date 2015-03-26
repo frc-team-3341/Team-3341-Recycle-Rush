@@ -8,11 +8,13 @@ class Hook: public Subsystem
 {
 private:
 	Jaguar* hookControl;
+	bool active;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	void deploy();
-	void retract();
+	bool isActive();
+	void move(float val);
+	void activate();
 	void stop();
 	Hook();
 	void InitDefaultCommand();

@@ -31,6 +31,7 @@ void CommandBase::init()
 	oi = new OI();
 	claw = new Claw();
 	gyro = new GyroSubsystem();
+	hook = new Hook();
 	//ir = new SensorBar();
 
 }

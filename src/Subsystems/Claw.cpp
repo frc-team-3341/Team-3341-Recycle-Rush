@@ -13,13 +13,13 @@ void Claw::stop(){
 }
 
 void Claw::open(){
-	left->Set(.3);
-	right->Set(-.3);
+	left->Set(.4);
+	right->Set(-.6);
 }
 
 void Claw::close(){
-	left->Set(-.3);
-	right->Set(.3);
+	left->Set(-.4);
+	right->Set(.6);
 }
 
 

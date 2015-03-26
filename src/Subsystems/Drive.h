@@ -11,9 +11,11 @@ private:
 	Talon* right;
 	Encoder* eLeft;
 	Encoder* eRight;
+	float mult;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
+	void setMult(float m);
 	Drive();
 	void arcadeDrive(float move, float rotate);
 	double GetDistance();

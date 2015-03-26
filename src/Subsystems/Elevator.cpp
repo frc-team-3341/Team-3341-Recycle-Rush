@@ -1,4 +1,5 @@
 #include "Elevator.h"
+#include "Hook.h"
 #include "../RobotMap.h"
 #include "Commands/MoveElevator.h"
 
@@ -31,14 +32,21 @@ void Elevator::bothOff()
 
 void Elevator::moveElevator(float speed){
 	//printf("Claw: %f; Hooks: %f\n", s1Encoder->GetDistance(), s2Encoder->GetDistance());
-	if(clawControl)
-		s1Screw->Set(speed);
-	else if(both){
-		s1Screw->Set(speed);
-		s2Screw->Set(speed);
+	if(!CommandBase::hook->isActive()){
+		if(clawControl)
+			s1Screw->Set(speed);
+		else if(both){
+			s1Screw->Set(speed);
+			s2Screw->Set(speed);
+		}
+		else
+			s2Screw->Set(speed);
 	}
-	else
-		s2Screw->Set(speed);
+}
+
+void Elevator::hardStop(){
+	s1Screw->Set(0);
+	s2Screw->Set(0);
 }
 
 void Elevator::InitDefaultCommand()
