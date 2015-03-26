@@ -60,7 +60,7 @@ private:
 
 		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
 		Scheduler::GetInstance()->Run();
-		CommandBase::ir->printValues();
+		//CommandBase::ir->printValues();
 	}
 
 	void TestPeriodic()

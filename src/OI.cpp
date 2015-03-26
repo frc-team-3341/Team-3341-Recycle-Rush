@@ -3,8 +3,10 @@
 #include "Commands/ClawOff.h"
 #include "Commands/ClawOpen.h"
 #include "Commands/ClawClose.h"
-#include "Commands/DeployHook.h"
-#include "Commands/RetractHook.h"
+#include "Commands/ActivateHook.h"
+#include "Commands/StopHook.h"
+#include "Commands/DriveReverse.h"
+#include "Commands/DriveForward.h"
 #include "Commands/BothOn.h"
 #include "Commands/BothOff.h"
 #include "Commands/CVAlignTote.h"
@@ -15,7 +17,9 @@
 OI::OI() :
  driveStick(new Joystick(DRIVESTICK)), operatorStick(new Joystick(OPERATORSTICK))
 {
-	// Claw control
+	Button* driveTrigger = new JoystickButton(driveStick, 1);
+	driveTrigger->WhenPressed(new DriveReverse());
+	driveTrigger->WhenReleased(new DriveForward());
 	Button* trigger = new JoystickButton(operatorStick, 1);
 	trigger->WhenPressed(new ClawOn());
 	trigger->WhenReleased(new ClawOff());
@@ -26,23 +30,13 @@ OI::OI() :
 	clawOpen->WhenPressed(new ClawOpen());
 	Button* clawClose = new JoystickButton(operatorStick, 4);
 	clawClose->WhenPressed(new ClawClose());
-	Button* deployHook = new JoystickButton(driveStick, 1);
-	deployHook->WhenPressed(new DeployHook());
-	Button* retractHook = new JoystickButton(driveStick, 2);
-	retractHook->WhenPressed(new RetractHook());
-	// Automove control
 	Button* autoMoveButton = new JoystickButton (operatorStick,5);
 	autoMoveButton ->WhenPressed (new CVAlignTote());
-
-	// Step response control
-	//Button* stepresponse_button = new JoystickButton(operatorStick, 6);
-	//stepresponse_button->WhenPressed(new GetStepResponse());
-	// Process operator interface input here.
-
-
-	//IRSensor
-	//Button* irSensor = new JoystickButton(CommandBase::ir->printValues());
-
+	Button* getStepResponse = new JoystickButton(operatorStick, 6);
+	getStepResponse->WhenPressed(new GetStepResponse());
+	Button* seven = new JoystickButton(operatorStick, 7);
+	seven->WhenPressed(new ActivateHook());
+	seven->WhenReleased(new StopHook());
 }
 
 Joystick* OI::getDriveStick(){

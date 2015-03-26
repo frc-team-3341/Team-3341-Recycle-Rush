@@ -1,13 +1,13 @@
-#ifndef DeployHook_H
-#define DeployHook_H
+#ifndef MoveHook_H
+#define MoveHook_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class DeployHook: public CommandBase
+class MoveHook: public CommandBase
 {
 public:
-	DeployHook();
+	MoveHook();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

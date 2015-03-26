@@ -1,27 +1,38 @@
 #include "Hook.h"
+#include "../CommandBase.h"
+#include "../Commands/MoveHook.h"
 #include "../RobotMap.h"
 
 Hook::Hook()
-	:	Subsystem("Hook"), hookControl(new Jaguar(HOOK))
+	:	Subsystem("Hook"), hookControl(new Jaguar(HOOK)), active(false)
 {
 
 }
 
 //TODO FIX DIRECTION IF NECESSARY
-void Hook::deploy(){
-	hookControl->Set(.1);
+void Hook::activate(){
+	active = true;
 }
 
-void Hook::retract(){
-	hookControl->Set(-.1);
+bool Hook::isActive(){
+	return active;
 }
 
+void Hook::move(float val){
+	if(active)
+	{
+		CommandBase::elevator->hardStop();
+		hookControl->Set(val);
+	}
+}
 void Hook::stop(){
-	hookControl->Set(0);
+	active = false;
+	hookControl->Set(0.0);
 }
 
 void Hook::InitDefaultCommand()
 {
+	SetDefaultCommand(new MoveHook());
 	// Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
 }
