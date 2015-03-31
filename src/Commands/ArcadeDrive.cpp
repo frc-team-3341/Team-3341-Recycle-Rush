@@ -22,7 +22,14 @@ void ArcadeDrive::Execute()
 	if(fabs(oi->getDriveStick()->GetZ()) >= 0.05)
 	{
 		isReset = false;
-		drive->arcadeDrive(-oi->getDriveStick()->GetY(), -oi->getDriveStick()->GetZ());
+        double x = -oi->getDriveStick()->GetZ(); 
+        double a = 1, b = 0.5;
+        double control;
+        if(x > 0)
+            control = b + (1-b)*(a*power(x, 5) + (1-a)*x);
+        else
+            control = -(-b + (1-b)*(a*power(x, 5) + (1-a)*x));
+		drive->arcadeDrive(-oi->getDriveStick()->GetY(), x * control);
 	}
 	else{
 		if(!isReset){
