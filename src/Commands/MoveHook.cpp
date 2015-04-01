@@ -16,7 +16,9 @@ void MoveHook::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void MoveHook::Execute()
 {
-	hook->move(-oi->getOperatorStick()->GetY());
+    double val = -oi->getOperatorStick()->GetY(); 
+    if(fabs(val) > 0.05)
+        hook->move(val);
 }
 
 // Make this return true when this Command no longer needs to run execute()

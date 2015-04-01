@@ -19,17 +19,18 @@ void ArcadeDrive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ArcadeDrive::Execute()
 {
-	if(fabs(oi->getDriveStick()->GetZ()) >= 0.05)
+    double x = -oi->getDriveStick()->GetZ(); 
+	if(fabs(x) >= 0.05)
 	{
 		isReset = false;
-        double x = -oi->getDriveStick()->GetZ(); 
-        double a = 1, b = 0.5;
+        // Implements a curve rather than a linear output for better turning
+        double a = 0.7, b = 0;
         double control;
         if(x > 0)
-            control = b + (1-b)*(a*power(x, 5) + (1-a)*x);
+            control = b + (1-b)*(a*power(x, 3) + (1-a)*x);
         else
-            control = -(-b + (1-b)*(a*power(x, 5) + (1-a)*x));
-		drive->arcadeDrive(-oi->getDriveStick()->GetY(), x * control);
+            control = -b + (1-b)*(a*power(x, 3) + (1-a)*x);
+		drive->arcadeDrive(-oi->getDriveStick()->GetY(), control);
 	}
 	else{
 		if(!isReset){
