@@ -19,21 +19,26 @@ void ArcadeDrive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ArcadeDrive::Execute()
 {
-    double x = -oi->getDriveStick()->GetZ(); 
-	if(fabs(x) >= 0.05)
+	if(fabs(oi->getDriveStick()->GetZ()) >= 0.05)
 	{
 		isReset = false;
-        // Implements a curve rather than a linear output for better turning
-        double a = 0.7, b = 0;
-        double control;
-        if(x > 0)
-            control = b + (1-b)*(a*power(x, 3) + (1-a)*x);
-        else
-            control = -b + (1-b)*(a*power(x, 3) + (1-a)*x);
+		double x = -oi->getDriveStick()->GetZ();
+		double a = 0.7;
+		double b = 0;
+		double control;
+		if (drive->getRotationCurve())
+		{
+			if(x > 0)
+				control = b + (1-b)*((a*pow(x, 3) + (1-a)*x));
+			else
+				control = -b + (1-b)*((a*pow(x, 3) + (1-a)*x));
+		}
+		else
+			control = x;
 		drive->arcadeDrive(-oi->getDriveStick()->GetY(), control);
 	}
 	else{
-		if(!isReset){
+		/* GYRO CODE: */ if(!isReset){
 			drive->arcadeDrive(0,0);
 			Wait(.05);
 			isReset = true;
@@ -45,6 +50,12 @@ void ArcadeDrive::Execute()
 		{
 			drive->arcadeDrive(0,0);
 		}
+		/*NO GYRO CODE: if(fabs(oi->getDriveStick()->GetY()) >= .05)
+					drive->arcadeDrive(-oi->getDriveStick()->GetY(), 0.0);
+				else
+				{
+					drive->arcadeDrive(0,0);
+				}*/
 	}
 }
 
@@ -66,3 +77,4 @@ void ArcadeDrive::Interrupted()
 {
 
 }
+

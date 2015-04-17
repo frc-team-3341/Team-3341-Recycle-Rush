@@ -9,7 +9,7 @@
 Drive::Drive() :
 		Subsystem("Drive"), left(new Talon(DRIVE_LEFT)), right(new Talon(DRIVE_RIGHT)),
 		eLeft(new Encoder(ENCODER_LEFT_1, ENCODER_LEFT_2)),
-		eRight(new Encoder(ENCODER_RIGHT_1, ENCODER_RIGHT_2)), mult(1.0)
+		eRight(new Encoder(ENCODER_RIGHT_1, ENCODER_RIGHT_2)), mult(1.0), rotationCurve(true)
 
 {
 			eLeft->SetDistancePerPulse(1.0);
@@ -113,6 +113,16 @@ double Drive::GetRate()
 	return -((double)((eLeft->GetRate())/1090.0) - (double)((eRight->GetRate())/1090.0)) / 2.0;
 }
 
+void Drive::toggleRotationCurve()
+{
+	rotationCurve = !rotationCurve;
+}
+
+bool Drive::getRotationCurve()
+{
+	return rotationCurve;
+}
+
 void Drive::InitDefaultCommand()
 {
 	SetDefaultCommand(new ArcadeDrive());
@@ -122,3 +132,4 @@ void Drive::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+

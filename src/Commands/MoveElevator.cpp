@@ -16,7 +16,11 @@ void MoveElevator::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void MoveElevator::Execute()
 {
-	elevator->moveElevator(-oi->getOperatorStick()->GetY());
+	double y = oi->getOperatorStick()->GetY();
+	if(fabs(y) > 0.05)
+		elevator->moveElevator(-y);
+	else
+		elevator->moveElevator(0.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -37,3 +41,4 @@ void MoveElevator::Interrupted()
 {
 
 }
+

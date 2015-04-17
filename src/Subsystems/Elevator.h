@@ -25,8 +25,11 @@ public:
 	void clawOn();
 	void clawOff();
 	void moveElevator(float speed);
+	void resetS2Distance();
+	double getS2Distance();
 	void hardStop();
 	double GetHookRate();
 };
 
 #endif
+
