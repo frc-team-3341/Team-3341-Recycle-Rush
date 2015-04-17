@@ -8,12 +8,14 @@ TurnAndDrive::TurnAndDrive(double inDistance, double inAngle)
 	// eg. Requires(chassis);
 	Requires(drive);
 	Requires(gyro);
+	distancePid = NULL;
+	anglePid = NULL;
 }
 
 // Called just before this Command runs the first time
 void TurnAndDrive::Initialize()
 {
-	SetTimeout(2);
+	SetTimeout(2.2);
 	drive->ResetEncoders();
 	gyro->ResetGyro();
 	distancePid = new NewPIDController(1.0, 0.05, 0.0, distance, true);
@@ -29,7 +31,7 @@ void TurnAndDrive::Execute()
 	double rotateVal = anglePid->Tick(current_angle);
 	printf("Distance setpoint: %f; Current distance: %f; Distance error: %f; Distance Last PWM: %f; Distance rate: %f\n",
 			distancePid->GetSetPoint(), current_distance, distancePid->GetError(), distancePid->GetLastPWM(), drive->GetRate());
-	drive->arcadeDrive(Drive::Limit(pwm_val,.5), Drive::Limit(rotateVal, 1.0));
+	drive->arcadeDrive(Drive::Limit(pwm_val, .5), Drive::Limit(rotateVal, 1.0));
 	//printf("Setpoint: %f\nCurrent Distance: %f\nError: %f\nPWM Value: %f\n\n", distancePid->GetSetPoint(), current_distance, distancePid->GetError(), pwm_val);
 	//printf("Setpoint: %f\nCurrent Angle: %f\nError: %f\nPWM Value: %f\n\n", anglePid->GetSetPoint(), current_angle, anglePid->GetError(), rotateVal);
 	//printf("%f", current_distance);
@@ -60,3 +62,4 @@ void TurnAndDrive::Interrupted()
 {
 
 }
+

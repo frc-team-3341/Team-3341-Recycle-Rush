@@ -1,23 +1,21 @@
 #include "WPILib.h"
 #include "NetworkTablesInterface.h"
 #include "Commands/Command.h"
+#include "Commands/AutonomousProgram.h"
 #include "CommandBase.h"
 #include <stdint.h>
 
 class Robot: public IterativeRobot
 {
 private:
-	Command *autonomousCommand;
+	AutonomousProgram *autonomousCommand;
 	LiveWindow *lw;
 
 	void RobotInit()
 	{
 		CommandBase::init();
+		autonomousCommand = new AutonomousProgram();
 		lw = LiveWindow::GetInstance();
-		SmartDashboard::PutNumber("step_size", 0.0);
-		//SmartDashboard::PutNumber("distanceP", 1.3125);
-		//SmartDashboard::PutNumber("distanceI", 0.0);
-		//SmartDashboard::PutNumber("distanceD", 0.0);
 	}
 	
 	void DisabledPeriodic()
@@ -61,6 +59,7 @@ private:
 		//printf("Gyro Angle: %f\n", CommandBase::gyro->GetAngle());
 		Scheduler::GetInstance()->Run();
 		//CommandBase::ir->printValues();
+		//printf("Ticks: %f\n", CommandBase::elevator->getS2Distance());
 	}
 
 	void TestPeriodic()
@@ -70,4 +69,5 @@ private:
 };
 
 START_ROBOT_CLASS(Robot);
+
 

@@ -12,9 +12,12 @@ private:
 	Encoder* eLeft;
 	Encoder* eRight;
 	float mult;
+	bool rotationCurve;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
+	void toggleRotationCurve();
+	bool getRotationCurve();
 	void setMult(float m);
 	Drive();
 	void arcadeDrive(float move, float rotate);
@@ -27,3 +30,4 @@ public:
 };
 
 #endif
+

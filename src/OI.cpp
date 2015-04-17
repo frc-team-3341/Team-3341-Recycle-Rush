@@ -11,6 +11,7 @@
 #include "Commands/BothOff.h"
 #include "Commands/CVAlignTote.h"
 #include "Commands/GetStepResponse.h"
+#include "Commands/ToggleRotationCurve.h"
 #include "NetworkTablesInterface.h"
 #include "CommandBase.h"
 
@@ -20,6 +21,8 @@ OI::OI() :
 	Button* driveTrigger = new JoystickButton(driveStick, 1);
 	driveTrigger->WhenPressed(new DriveReverse());
 	driveTrigger->WhenReleased(new DriveForward());
+	Button* toggleRotationCurve = new JoystickButton(driveStick, 5);
+	toggleRotationCurve->WhenPressed(new ToggleRotationCurve());
 	Button* trigger = new JoystickButton(operatorStick, 1);
 	trigger->WhenPressed(new ClawOn());
 	trigger->WhenReleased(new ClawOff());
@@ -30,13 +33,11 @@ OI::OI() :
 	clawOpen->WhenPressed(new ClawOpen());
 	Button* clawClose = new JoystickButton(operatorStick, 4);
 	clawClose->WhenPressed(new ClawClose());
-	Button* autoMoveButton = new JoystickButton (operatorStick,5);
-	autoMoveButton ->WhenPressed (new CVAlignTote());
-	Button* getStepResponse = new JoystickButton(operatorStick, 6);
-	getStepResponse->WhenPressed(new GetStepResponse());
-	Button* seven = new JoystickButton(operatorStick, 7);
-	seven->WhenPressed(new ActivateHook());
-	seven->WhenReleased(new StopHook());
+	Button* autoMoveButton = new JoystickButton(operatorStick, 5);
+	autoMoveButton->WhenPressed (new CVAlignTote());
+	Button* hookButton = new JoystickButton(operatorStick, 7);
+	hookButton->WhenPressed(new ActivateHook());
+	hookButton->WhenReleased(new StopHook());
 }
 
 Joystick* OI::getDriveStick(){
@@ -46,3 +47,4 @@ Joystick* OI::getDriveStick(){
 Joystick* OI::getOperatorStick(){
 	return operatorStick;
 }
+

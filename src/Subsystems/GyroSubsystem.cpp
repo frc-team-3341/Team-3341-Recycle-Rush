@@ -4,7 +4,7 @@
 GyroSubsystem::GyroSubsystem() :
 		Subsystem("GyroSubsystem")
 {
-	agyro = new Gyro(new AnalogInput(1));
+	agyro = new Gyro(new AnalogInput(0));
 	agyro->InitGyro();
 	agyro->Reset();
 }
@@ -27,3 +27,4 @@ void GyroSubsystem::ResetGyro()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+

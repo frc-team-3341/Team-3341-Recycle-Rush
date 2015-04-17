@@ -26,7 +26,7 @@ void RunStep::Execute()
 {
 	//drive->arcadeDrive(step_size, anglePid->Tick(gyro->GetAngle()));
 	//printf("%f\n", drive->GetRate());
-	printf("%f\n", elevator->GetHookRate());
+	//printf("%f\n", elevator->GetHookRate());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -47,3 +47,4 @@ void RunStep::Interrupted()
 {
 
 }
+

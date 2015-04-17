@@ -1,41 +1,39 @@
-#include "MoveHook.h"
+#include "ResetElevatorEncoders.h"
 
-MoveHook::MoveHook()
+ResetElevatorEncoders::ResetElevatorEncoders()
 {
-	Requires(hook);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
+	Requires(elevator);
 }
 
 // Called just before this Command runs the first time
-void MoveHook::Initialize()
+void ResetElevatorEncoders::Initialize()
 {
-
+	elevator->resetS2Distance();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveHook::Execute()
+void ResetElevatorEncoders::Execute()
 {
-	double val = -oi->getOperatorStick()->GetY();
-	if(fabs(val) > 0.05)
-		hook->move(val);
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool MoveHook::IsFinished()
+bool ResetElevatorEncoders::IsFinished()
 {
-	return false;
+	return true;
 }
 
 // Called once after isFinished returns true
-void MoveHook::End()
+void ResetElevatorEncoders::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MoveHook::Interrupted()
+void ResetElevatorEncoders::Interrupted()
 {
 
 }
